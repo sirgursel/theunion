@@ -1,0 +1,211 @@
+extends layout
+
+block content
+    section.hero
+        .hero-content
+            h1 Fostering
+            h2.hero-title-borders
+                span Community
+                span Commerce
+                span Creativity
+                span Culture
+            a(href="/about")
+                button.btn.btn-lg.btn-gray.btn-slg Learn more
+    section.about
+        .container
+            .titlebox.mb-3
+                h3.about-title What is the union?
+            p.about-content.mb-4 The Union is an innovation hub created to foster community, commerce, creativity and culture for people of African descent in Seattle. We offer co-working space and carefully curated educational programs for all levels of people interested in pursuing careers in technology and entrepreneurship. We also provide pertinent resources for startups &amp; established businesses.
+            .row.about-images
+                .col.col-md-6
+                    img(src="/img/student-cpu@2x.png")
+                .col.col-md-6
+                    img(src="/img/tech-record-player@2x.png")
+                .col.col-12
+                    img(src="/img/group-seated@2x.png")
+            .pt-5.text-center
+            a(href="/about")
+                button.btn.btn-slg.btn-transparent learn more about us
+    section.separator
+        .container
+            .separator-content
+                h4 fostering community since 2015
+                p THE UNION is a nonprofit initiative of PACE, a 501(c)3 located in Washington.
+            a(href='', onclick="Calendly.showPopupWidget('https://calendly.com/theunion');return false;")
+                button.btn.btn-darkgray.btn-slg Schedule a Tour
+    section.benefits
+        .container
+            .titlebox.titlebox-lightblue.mb-4
+                h3 Member Benefits &amp; Facilities
+            .row
+                -
+                    var staticBenefits = [
+                    {title: "high-speed internet", description: "With high speed fiber our members enjoy internet throughout our facility. Whether working inside or in our plaza you're connected.", image: "img/wifi-icon@2x.png"},
+                    {title: "free beverages", description: "We offer coffee, tea, soda and kombucha in addition to beer and wine in the afternoons. We also have spirits available for special events.", image: "img/coffee-icon@2x.png"},
+                    {title: "Gym access", description: "Our facility has a full gym with showers and daily towel service. Take a break from work to refocus on health and wellness.", image: "img/barbells-icon@2x.png"},
+                    {title: "meeting room", description: "When you need to huddle with your team we offer a video equipped meeting room with a large white board and executive seating.", image: "img/meeting-room-icon@2x.png"},
+                    {title: "conference rooms", description: "Our facility is equipped with two large multipurpose conference rooms perfect for large meetings, workshops and conferences.", image: "img/conference-icon@2x.png"},
+                    {title: "recording studio", description: "Designed for modern content creation, our recording studio comes equipped with all you need to record podcast, songs or edit videos.", image: "img/recording-icon@2x.png"}
+                    ]
+                for benefit in staticBenefits
+                    .col-md-4.mb-4.px-4
+                        .benefits-item-title.mb-3
+                            img(src=benefit.image alt="" height="28")
+                            h5= benefit.title
+                        .benefits-item-content
+                            p= benefit.description
+            .text-center.pt-3
+            a(href='/amenities')
+                button.btn.btn-darkwhite.btn-slg explore all benefits
+    section.events
+        .container
+            .events-left
+                for event, i in events
+                    a(href=event.rsvp)
+                        img(src=event.poster, alt="", data-event=i, class=i == 0 ? 'selected' : '')
+            .events-right
+                h3.events-title the union events
+                ul.events-list
+                    for event, i in events
+                        li
+                            a(href=event.rsvp data-event-target=i, data-event-type="scroll", class=i == 0 ? 'selected' : '').events-list-item
+                                .titlebox.titlebox--small
+                                    h6 
+                                        span= moment(event.starttime).format("MMM")
+                                        br
+                                        =moment(event.starttime).format('Do YYYY')
+                                div
+                                    h4.events-list-item-title= event.title
+                                    p= event.description
+                .events-button
+                    a(href="/events").btn.btn-slg.btn-transparent more union events
+    section.twitter-feed
+        .container
+            form.footer-form(action="/newsletter" method="POST")
+                input(type='hidden', name='_csrf', value=_csrf)
+                h4.footer-title Subscribe to our newsletter
+                input(type="text" placeholder="Enter Your E-mail" class="form-control form-control-lg" name="email")
+                button(type="submit")
+    section.prices
+        .container
+            .titlebox.mb-3
+                h3 Become a Member
+            p.prices-content We offer many levels of membership for entrepreneurs and creative professionals. Some of our packages and perks are listed below. You can purchase an add-on to any package to receive 24/7 access. 
+            p.prices-content Contact us to learn more about membership and schedule a tour.
+            .row
+                -
+                    var prices = [
+                        {title: 'night-time', subtitle: 'Great for Corporate Hustlers', access: '5PM to 9PM [M-F]', price: '150.00', list: [true, true, true, true, false, false, false]}, 
+                        {title: 'prime-time', subtitle: 'Great for Entrepreneurs', access: '9AM to 5PM [M-F]', price: '250.00', list: [true, true, true, true, false, false, false]}, 
+                        {title: 'all access', subtitle: 'Our Full Service offering', access: '24/7', price: '650.00', list: [true, true, true, true, true, true, true]}]
+                each priceitem, index in prices
+                    .col-lg-4.mb-3.mb-lg-0
+                        div(class=index==1?'prices-item--middle':'').prices-item
+                            .titlebox.titlebox--notop.mb-3
+                                div
+                                    h4= priceitem.title
+                                    p.mb-0= priceitem.subtitle
+                                    small
+                                        | Access 
+                                        = priceitem.access
+                            ul.prices-list
+                                each line, index in ['High-Speed Internet Access', 'Access to all events', 'meeting room credits', 'unlimited printing', 'gym access', 'shower & tower service', 'conference facilities']
+                                    li(class=priceitem.list[index] ? 'prices-list-item--checked' : 'prices-list-item--unchecked').prices-list-item
+                                        =line
+                            .prices-monthly
+                                span
+                                    | $ 
+                                    =priceitem.price
+                                br
+                                small Monthly
+                            .p-3.p-md-5
+                                a(href='https://members.theunion.io').btn.btn-slg.btn-transparent Learn More
+    section.testimonials
+        .container
+            .titlebox
+                h3 testimonials
+            .testimonials-list.bxslider
+                +testimonialSection(testimonials)
+    section.team
+        .container
+            .titlebox.mb-4
+                h3 Our Team
+            .d-none.d-md-block
+                .bxslider
+                    +teamSection(members, true)
+            .d-block.d-md-none
+                .bxslider
+                    +teamSection(members)
+            //- .row
+            //-     each member in members
+            //-         div(class="col-md-" + 12/members.length)
+            //-             .card
+            //-                 img(src=member.photo alt=member.name + " profile").card-img-top
+            //-                 .card-body
+            //-                     p.card-title= member.name
+            //-                     p.card-subtitle= member.description
+            //-                     -
+            //-                         var socials = 
+            //-                             {
+            //-                                 linkedin: 'fa-linkedin-in', 
+            //-                                 twitter: 'fa-twitter', 
+            //-                                 facebook: 'fa-facebook-f'
+            //-                             }
+            //-                     ul.card-socials
+            //-                         each social, key in socials
+            //-                             li
+            //-                                 a(href=member.links[key]).icon-circle
+            //-                                     i(class=social).fab
+    section.photos
+        .photos-item
+            .container
+                .row
+                    .col-md-12.col-lg-6
+                        a(href="/img/group-planning@2x.png" data-lightbox="home-gallery")
+                            img(src="/img/group-planning@2x.png" alt="")
+                    .col-md-6.col-lg-3
+                        a(href="/img/man-whiteboard@2x.png" data-lightbox="home-gallery")
+                            img(src="/img/man-whiteboard@2x.png" alt="")
+                    .col-md-6.col-lg-3
+                        a(href="/img/reading-news@2x.png" data-lightbox="home-gallery")                    
+                            img(src="/img/reading-news@2x.png" alt="")
+        .photos-item
+            .container
+                .row
+                    .col-md-6.col-lg-3
+                        a(href="/img/women-whiteboard@2x.png" data-lightbox="home-gallery")   
+                            img(src="/img/women-whiteboard@2x.png" alt="")
+                    .col-md-6.col-lg-3
+                        a(href="/img/hand-writing@2x.png" data-lightbox="home-gallery")   
+                            img(src="/img/hand-writing@2x.png" alt="")
+                    .col-md-12.col-lg-6
+                        a(href="/img/women-networking@2x.png" data-lightbox="home-gallery")   
+                            img(src="/img/women-networking@2x.png" alt="")
+    section.articles
+        .container
+            .titlebox.mb-3.mb-md-5
+                h3 Latest articles
+            .row
+                +articlesSection(articles, 3)
+    section.twitter-feed
+        .container
+            i.fab.fa-twitter
+            p Launching a tech startup is definitely not easy. Join our mailing list to stay up to date on our meetups, workshops, and tech talks #poweredbyPACE
+            p.twitter-feed-username @theunionsea
+            button.btn.btn-blue.btn-capsule.btn-sm Follow
+    section.featured
+        .container-fluid
+            h3.featured-title Featured On
+            .d-none.d-lg-block
+                ul.featured-list
+                    - var images = ['blavity', 'king-5', 'seattle-met', 'geekwire', 'city-arts', 'rolling-out']
+                    each image in images
+                        li.featured-item
+                            img(src="/img/" + image + "@2x.png", alt="")
+            .d-block.d-lg-none.px-3
+                .bxslider
+                    - var images = ['blavity', 'king-5', 'seattle-met', 'geekwire', 'city-arts', 'rolling-out']
+                    each image in images
+                        .row.m-0.mb-2
+                            .col.p-0
+                                img(src="/img/" + image + "@2x.png", alt="").m-auto

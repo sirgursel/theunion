@@ -1,0 +1,48 @@
+.articles{
+    padding: 70px 0;
+
+    @include device-sm{
+        padding: 35px 0;
+    }
+
+    .card{
+        border: none;
+
+        &-body{
+            background-color: #f6f6f6;
+        }
+
+        &-date{
+            font-size: 1.05rem;
+            color: $gray-700;
+        }
+
+        &-title{
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+
+        &-content{
+            font-size: .95rem;
+            color: $gray-800;
+            font-weight: 300;
+        }
+
+        &-link{
+            font-weight: 600;
+            color: $blue-900;
+
+            img{
+                margin-bottom: 3px;
+            }
+
+            &:hover{
+                color: lighten($blue-900, 10%);
+            }
+        }
+
+        @include device-sm{
+            margin-bottom: .75rem;
+        }
+    }
+}

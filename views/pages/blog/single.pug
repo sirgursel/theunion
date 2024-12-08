@@ -1,0 +1,87 @@
+extends ./../../layout
+
+block content
+    section.blog
+        .container
+            .titlebox.mb-5
+                h1 Latest articles
+            .row
+                .col-md-3
+                    aside
+                        .blog-block
+                            form(action="#" method="POST")
+                                input(type="text" class="form-control" placeholder="Search")
+                                button(type="submit")
+                                    i.fas.fa-search
+                        if blogCategories && blogCategories.length
+                            .blog-block
+                                .blog-block-header
+                                    h5.mb-0
+                                        button(data-toggle="collapse" data-target="#sidebar_menu_1" aria-expanded="true" aria-controls="#sidebar_menu_1").btn.btn-link.btn-block Categories
+                                div(id="sidebar_menu_1").collapse.mt-2.show
+                                    .blog-block-body
+                                        ul.blog-block-body-categories
+                                            each category, index in blogCategories
+                                                li
+                                                    //- remove class=index == 3 ? 'active' : ''
+                                                    a(href="#" class=index == 3 ? 'active' : '')=category
+                        if blogPopular && blogPopular.length
+                            .blog-block
+                                .blog-block-header
+                                    h5.mb-0
+                                        button(data-toggle="collapse" data-target="#sidebar_menu_2" aria-expanded="true" aria-controls="#sidebar_menu_2").btn.btn-link.btn-block Popular article
+                                div(id="sidebar_menu_2").collapse.mt-2.show
+                                    .blog-block-body
+                                        ul.blog-block-body-articles
+                                            each article in blogPopular
+                                                li: a(href=article.link)= article.title
+                        if blogTags && blogTags.length
+                            .blog-block
+                                .blog-block-header
+                                    h5.mb-0
+                                        button(data-toggle="collapse" data-target="#sidebar_menu_3" aria-expanded="true" aria-controls="#sidebar_menu_3").btn.btn-link.btn-block Popular tags
+                                div(id="sidebar_menu_3").collapse.mt-2.show
+                                    .blog-block-body
+                                        ul.blog-block-body-tags
+                                            each tag in blogTags
+                                                li: a(href="#")= tag
+                                    .clearfix
+                .col-md-9.blog-article
+                    .card.card-noborder
+                        .card-img
+                            img(src=blog.thumbnail, alt="article about ..").card-img-top
+                        .card-body
+                            h1.card-title=blog.title
+                            p.card-date
+                                =blog.date
+                                span.ml-5 By 
+                                    a(href=blog.author.url)=blog.author.name
+
+                            //- html content
+                            div.card-content
+                                !=blog.content
+
+                            .card-sharing.mb-5
+                                h4 Share This Article
+                                ul
+                                    li: a(href="#").btn.btn-twitter
+                                        i.fab.fa-twitter.mr-3
+                                        | Twitter
+                                    li: a(href="#").btn.btn-facebook
+                                        i.fab.fa-facebook-f.mr-3
+                                        | Facebook
+                                    li: a(href="#").btn.btn-google
+                                        i.fab.fa-google-plus-g.mr-3
+                                        | Google+
+                                h5 Tags: startup, tips, leadership, founder
+                            if blog.author
+                                -var author = blog.author
+                                .card-authorbox
+                                    .p-3.pr-4
+                                        img(src=author.thumbnail, alt="" width="100" height="100").rounded-circle
+                                    .p-3
+                                        h3
+                                            | Article by 
+                                            a(href=author.url)
+                                                = author.name
+                                        p=author.content

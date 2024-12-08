@@ -1,0 +1,45 @@
+extends ./../layout
+
+block content
+    section.hero.amenities-hero
+        .overflow-white-bottom
+        .hero-content
+            h1 OUR AMENITIES
+            h3 Explore our space and benefits of membership.
+    section.amenities-main
+        .container
+            .amenities-main-header.bx-wrapper
+                .bx-controls
+                    .bx-controls-direction
+                        a.bx-prev(href="" data-event-action="prev") Prev
+                        a.bx-next(href="" data-event-action="next") Next
+                ul
+                    for amenity, i in amenities
+                        li
+                            a(href="#", class=i == 0 ? 'selected' : '', data-event-target=i)
+                                .img-wrapper
+                                    img(src=amenity.thumbnail alt=amenity.title)
+                                h3= amenity.title
+            for amenity, i in amenities
+                div(class=i == 0 ? 'selected' : '', data-event=i).amenities-main-body
+                    .row
+                        .col-md-6
+                            h2=amenity.title
+                            .amenities-main-body-content!=amenity.content
+                            ul
+                                for item in amenity.features
+                                    li
+                                        img(src=item.icon alt="")
+                                        h5=item.text
+                            .mt-4.mb-4.mb-md-0.text-center.text-md-left
+                                button.btn.btn-slg.btn-transparent SCHEDULE A TOUR
+                        .col-md-6
+                            for img in amenity.images
+                                .img-wrapper
+                                    img(src=img.image alt=img.name)
+    section.testimonials
+        .container
+            .titlebox
+                h3 testimonials
+            .testimonials-list.bxslider
+                +testimonialSection(testimonials)

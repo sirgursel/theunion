@@ -1,0 +1,113 @@
+.events{
+    &-hero{
+        min-height: 450px;
+        height: 450px;
+        background-image: url('./../img/hero-events@2x.png');
+        background-size: auto 100%;
+        color: $gray-900;
+    }
+
+    &-list{
+        .card{
+            // height: calc(100% - 90px);
+            border: none;
+            border-left: 1px solid $gray-600;
+            border-radius: 0;
+
+            @media screen and (max-width: 768px){
+                border: none;
+            }
+
+            &-line{
+                margin-bottom: 3.5rem;
+
+                @include device-lg{
+                    margin-bottom: 2rem;
+                }
+
+                @include device-md{
+                    margin-bottom: 1rem;
+                }
+
+                &:first-of-type{
+                    margin-top: 2rem;
+
+                    @include device-lg{
+                        margin-bottom: 1.5rem;
+                    }
+
+                    @include device-md{
+                        margin-bottom: .75rem;
+                    }
+                }
+
+                &:last-of-type{
+                    margin-bottom: 5rem;
+
+                    @include device-lg{
+                        margin-bottom: 3rem;
+                    }
+
+                    @include device-md{
+                        margin-bottom: 1.5rem;
+                    }
+                }
+            }
+
+            &-body{
+                padding: 1.5rem;
+            }
+
+            &-img-top{
+                border-radius: 0;
+                height: auto;
+                width: 100%;
+            }
+
+            &-title{
+                font-size: 1.75rem;
+                color: $gray-900;
+                font-weight: 500;
+                max-width: 300px;
+                white-space: pre-wrap;
+                
+            }
+
+            &-date{
+                font-weight: 300;
+                color: $gray-900;
+
+                span{
+                    @include device-xs{
+                        display: block;
+                    }
+                }
+            }
+
+            &-list{
+                list-style: none;
+
+                & li {
+                    position: relative;
+
+                    &:before{
+                        content: '';
+                        width: 20px;
+                        height: 20px;
+                        display: block;
+                        background: url('./../img/check-icon-circle@2x.png') center no-repeat;
+                        background-size: 100%;
+                        position: absolute;
+                        left: -35px;
+                        top: 2px;
+                    }
+                }
+            }
+
+            &-content, &-list{
+                color: #515151;
+                font-weight: 300;
+            }
+        }
+    }
+}

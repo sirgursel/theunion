@@ -1,0 +1,10 @@
+extends ./../layout
+
+block content
+    section.error-page
+        .row
+            .col-md-12.text-center
+                h2 Error 404
+                h1 You tried to navigate to ${url}, however that page cannot be found
+                p Please try another link...
+                a(href="/").btn.btn-slg.btn-transparent BACK TO HOMEPAGE

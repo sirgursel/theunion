@@ -1,0 +1,23 @@
+.twitter-feed{
+    background-color: black;
+    padding: 70px 0;
+    text-align: center;
+    color: white;
+    font-size: 1.45rem;
+    font-weight: 300;
+
+    @include device-lg{
+        padding: 35px 0;
+    }
+
+    i{
+        margin-bottom: 1.5rem;
+        font-size: 1.75rem;
+    }
+
+    &-username{
+        font-size: 1.1rem;
+        font-weight: 400;
+        margin-bottom: 1.5rem;
+    }
+}

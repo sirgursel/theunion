@@ -1,0 +1,32 @@
+.error-page{
+    // margin-top: 100px;
+    padding: 150px 0;
+    // min-height: 600px;
+
+    h1{
+        font-size: 4rem;
+        font-weight: 300;
+        margin-bottom: 1.5rem;
+    }
+
+    h2{
+        font-size: 2.25rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+    }
+
+    p{
+        font-size: 1rem;
+        font-weight: 300;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 4rem;
+    }
+
+    a{
+        color: black;
+        text-decoration: none;
+    }
+}

@@ -1,0 +1,12 @@
+mixin articlesSection(articles, numberOfCols)
+    each article in articles
+        div(class="col-md-"+12/numberOfCols)
+            .card
+                img(src=article.thumbnail, alt="article about ..").card-img-top
+                .card-body
+                    p.card-date=moment(article.date).format('MM-DD-YY')
+                    h4.card-title=article.title
+                    p.card-content=article.content
+                    a(href=article.link).card-link
+                        | Read article
+                        img(src="/img/arrow@2x.png" alt="" height="12").ml-3

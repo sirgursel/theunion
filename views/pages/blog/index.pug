@@ -1,0 +1,55 @@
+extends ./../../layout
+
+include ./../../partials/pagination
+
+block content
+    section.blog
+        .container
+            .titlebox.mb-5
+                h1 Latest articles
+            .row
+                .col-md-3
+                    aside
+                        .blog-block
+                            form(action="#" method="POST")
+                                input(type="text" class="form-control" placeholder="Search")
+                                button(type="submit")
+                                    i.fas.fa-search
+                        if blogCategories && blogCategories.length
+                            .blog-block
+                                .blog-block-header
+                                    h5.mb-0
+                                        button(data-toggle="collapse" data-target="#sidebar_menu_1" aria-expanded="true" aria-controls="#sidebar_menu_1").btn.btn-link.btn-block Categories
+                                div(id="sidebar_menu_1").collapse.mt-2.show
+                                    .blog-block-body
+                                        ul.blog-block-body-categories
+                                            each category, index in blogCategories
+                                                li
+                                                    //- remove class=index == 3 ? 'active' : ''
+                                                    a(href="#" class=index == 3 ? 'active' : '')=category
+                        if blogPopular && blogPopular.length
+                            .blog-block
+                                .blog-block-header
+                                    h5.mb-0
+                                        button(data-toggle="collapse" data-target="#sidebar_menu_2" aria-expanded="true" aria-controls="#sidebar_menu_2").btn.btn-link.btn-block Popular article
+                                div(id="sidebar_menu_2").collapse.mt-2.show
+                                    .blog-block-body
+                                        ul.blog-block-body-articles
+                                            each article in blogPopular
+                                                li: a(href=article.link)= article.title
+                        if blogTags && blogTags.length
+                            .blog-block
+                                .blog-block-header
+                                    h5.mb-0
+                                        button(data-toggle="collapse" data-target="#sidebar_menu_3" aria-expanded="true" aria-controls="#sidebar_menu_3").btn.btn-link.btn-block Popular tags
+                                div(id="sidebar_menu_3").collapse.mt-2.show
+                                    .blog-block-body
+                                        ul.blog-block-body-tags
+                                            each tag in blogTags
+                                                li: a(href="#")= tag
+                                    .clearfix
+                .col-md-9.articles.blog-articles
+                    .row
+                        +articlesSection(blogs, 2)
+                    if paginate
+                        +pagination(Array(7), 4)

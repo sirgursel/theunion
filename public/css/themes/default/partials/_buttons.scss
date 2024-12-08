@@ -1,0 +1,120 @@
+.btn{
+    &:focus{
+        outline: none;
+        box-shadow: none;
+    }
+
+
+    &-slg{
+        padding: 1rem 3rem;
+        border: 2px solid white;
+        border-radius: 0px;
+        text-transform: uppercase;
+        font-size: 1.15rem;
+        font-weight: 600;
+        white-space: normal;
+
+        &:hover, &:focus{
+            border: 2px solid white;
+            border-radius: 0px;
+        }
+    }
+
+    &-gray{
+        @include button-variant($gray-600, $gray-600);
+        border-color: white;
+
+        &:hover, &:focus{
+            border-color: white;
+        }
+    }
+
+    &-lightblue{
+        @include button-variant($blue-600, $blue-600);
+        
+        color: white;
+        border-color: black;
+
+        &:hover, &:focus{
+            border-color: black;
+        }
+    }
+
+    &-blue{
+        @include button-variant($blue-700, $blue-700);
+        border-color: white;
+
+        &:hover, &:focus{
+            border-color: white;
+        }
+    }
+
+    &-darkblue{
+        @include button-variant($blue-800, $blue-800);
+        border-color: white;
+
+        &:hover, &:focus{
+            border-color: white;
+        }
+    }
+
+    &-darkgray{
+        @include button-variant($gray-900, $gray-900);
+        border-color: white;
+
+        &:hover, &:focus{
+            border-color: white;
+        }
+    }
+
+    &-darkwhite{
+        @include button-variant($gray-400, $gray-400);
+
+        border-color: black;
+        color: $gray-600;
+
+        &:hover, &:focus{
+            border-color: black;
+        }
+    }
+
+    &-transparent{
+        border-color: black;
+        background-color: transparent;
+
+        &:hover, &:focus{
+            border-color: black;
+        }
+    }
+
+    &-black{
+        @include button-variant(black, black);
+        color: white;
+        border-color: black;
+
+        &:hover, &:focus{
+            border-color: black;
+        }
+    }
+
+
+    &-capsule{
+        border-radius: 25px;
+        padding: .25rem 1.5rem;
+    }
+
+    &-twitter{
+        @include button-variant(#1DA1F2, #1DA1F2);
+        color: white;
+    }
+
+    &-facebook{
+        @include button-variant(#3B5998, #3B5998);
+        color: white;
+    }
+
+    &-google{
+        @include button-variant(#E04A39, #E04A39);
+        color: white;
+    }
+}

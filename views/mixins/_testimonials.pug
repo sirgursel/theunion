@@ -1,0 +1,11 @@
+mixin testimonialSection(testimonials)
+    each testimonial in testimonials
+        .testimonials-item
+            h4.mb-3
+                img(src=testimonial.thumbnail, alt="", height="35")
+            blockquote
+                p= testimonial.content
+            p
+                = testimonial.author.name
+                br
+                small=testimonial.author.position

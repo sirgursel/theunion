@@ -1,0 +1,57 @@
+.members{
+    &-hero{
+        height: 400px;
+        min-height: 400px;
+        background: none;
+
+        .img-wrapper{
+            height: 400px;
+            overflow: hidden;
+
+            img{
+                height: 100%;
+                width: 100%;
+            }
+        }
+    }
+
+    &-title{
+        display: flex;
+        position: absolute;
+        justify-content: flex-start;
+        align-items: center;
+        bottom: -50px;
+
+        h1{
+            font-size: 2rem;
+            font-weight: 600;
+        }
+    
+        h2{
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
+    }
+
+    &-about{
+        padding: 5rem 0 2.5rem;
+
+        h3{
+            font-size: 1.4rem;
+        }
+
+        p{
+            font-weight: 300;
+            font-size: .9rem;
+            color: black;
+        }
+
+        &-testimony{
+            font-size: 1.2rem;
+        }
+    }
+    
+    &-list{
+        background-color: $gray-200;
+    }
+}

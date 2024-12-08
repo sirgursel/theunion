@@ -1,0 +1,51 @@
+extends ./../layout
+
+block content
+    section.hero.about-hero
+    section.about-main
+        .container
+            .mb-3.mb-lg-5
+                h1 S.T.E.A.M. WORK MAKES THE DREAM WORK
+                h2 SCIENCE - TECHNOLOGY - ENTREPRENEURSHIP - ARTS - MEDIA
+                h3 Be part of this vibrant and growing community.
+            p The Union provides over 2000 sq. ft of space that can be used for events catering to our members and corporate partners. Come co-work with us and sign up for a membership while you’re here! Finally, there's a place in the heart of Seattle with the sole purpose of serving a community often overlooked, underrepresented, and underserved by traditional business models.
+            p The Union Seattle is an innovation hub that fosters community, commerce, creativity, and culture for people of African descent and their allies. The Union is a carefully curated physical space that facilitates empowering engagements, from tech education to start-up execution. As a co-working space, cultural center and innovation hub, The Union easily transitions to an education facility where workshops are provided by our staff and members of partner organizations. This modular, multi-use space also houses a recording studio to aid the next generation of media producers and content creators.
+            ul.about-main-list
+                li
+                    span 100's
+                    div
+                        span.about-main-list-title Events
+                        span.about-main-list-contents Curated
+                li
+                    span 60+
+                    div
+                        span.about-main-list-title Workshops
+                        span.about-main-list-contents Given
+                li
+                    span 1000's
+                    div
+                        span.about-main-list-title People
+                        span.about-main-list-contents Served
+            p Through S.T.E.A.M. The Union is able to unite forces between organizations and individuals who are passionate about empowering people of African descent. Our strategic alliances and strategic initiatives support us as we strive to accomplish our organizational goals:
+                ul
+                    li Guide communities to embrace science, technology, and creative arts.
+                    li Promote empowering imagery via media production distributed through social media and web platforms.
+                    li Expose and prepare individuals for new careers in technology companies (tech & non-tech roles)
+                    li Increase the representation of individuals of African descent as founders of funded startups
+                    li Ensure that arts remain a vital part of our communities and traditions
+    section.about-members.team
+        .container
+            .titlebox.mb-4
+                h3 Our Team
+            .d-none.d-md-block
+                .bxslider
+                    +teamSection(members, true)
+            .d-block.d-md-none
+                .bxslider
+                    +teamSection(members)
+    section.testimonials
+        .container
+            .titlebox
+                h3 testimonials
+            .testimonials-list.bxslider
+                +testimonialSection(testimonials)

@@ -1,0 +1,52 @@
+footer.footer
+    .container-fluid
+        .footer-content
+            a(href="/").mb-3.mb-sm-0.ml-auto.ml-sm-0.mr-auto.align-self-start
+                img(src="/img/union-mark@2x.png", alt="")
+            .footer-navigation
+                .footer-list
+                    h3.footer-title About
+                    ul
+                        li
+                            a(href="/about") About Us
+                        //- li
+                        //-     a(href="/team") Team
+                        li
+                            a(href="/contact") Contact Us
+                        li
+                            a(href="/faq") FAQ
+                        //- li
+                        //-     a(href="#") Privacy
+                .footer-list
+                    h3.footer-title Community
+                    ul
+                        //- li
+                        //-     a(href="#") Members Directory
+                        li
+                            a(href="/gallery") Gallery
+                        //- li
+                        //-     a(href="#") Blog
+                        li
+                            a(href="/events") Events
+                .footer-list
+                    h3.footer-title Legal
+                    ul
+                        li
+                            a(href="/privacy") Privacy
+                        li
+                            a(href="/terms") Terms
+                .footer-list
+                    h3.footer-title @theunionsea
+                    ul.footer-form-list
+                        for social in ['instagram', 'twitter', 'facebook', 'medium', 'vimeo-v']
+                            li
+                                a(href="#")
+                                    i(class="fa-" + social).fab
+                form.footer-form(action="/newsletter" method="POST")
+                    h3.footer-title Subscribe to our newsletter
+                    input(type='hidden', name='_csrf', value=_csrf)
+                    input(type="text" placeholder="Enter Your E-mail" class="form-control form-control-lg" name="email")
+                    button(type="submit")
+    .footer-base
+        p Copyright The Union 2018. All Rights Reserved. Developed and
+            a(href="http://www.getonpace.org")  #poweredbyPACE.

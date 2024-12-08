@@ -1,0 +1,53 @@
+mixin teamSection(members, chunks = false)
+    if chunks
+        -var teamSize = 0
+        each chunk in _.chunk(members, 4)
+            if teamSize == 0
+                -teamSize = chunk.length
+            .row.mx-0.justify-content-center
+                each member in chunk
+                    div(class=`col-md-${12/teamSize}`)
+                        .card
+                            .card-shadow
+                            img(src=member.photo alt=member.name + " profile").card-img-top
+                            .card-body
+                                p.card-title= member.name
+                                p.card-subtitle= member.description
+                                -
+                                    var socials = 
+                                        {
+                                            linkedin: 'fa-linkedin-in', 
+                                            twitter: 'fa-twitter', 
+                                            facebook: 'fa-facebook-f'
+                                        }
+                                ul.card-socials
+                                    each social, key in socials
+                                        li
+                                            a(href=member.links[key]).icon-circle
+                                                i(class=social).fab
+    else
+        -var teamSize=0
+        each chunk in _.chunk(members, 1)
+            if teamSize == 0
+                -teamSize = chunk.length
+            .row.mx-0.justify-content-center.d-block.d-md-none
+                each member in chunk
+                    div(class=`col-12`)
+                        .card
+                            .card-shadow
+                            img(src=member.photo alt=member.name + " profile").card-img-top
+                            .card-body
+                                p.card-title= member.name
+                                p.card-subtitle= member.description
+                                -
+                                    var socials = 
+                                        {
+                                            linkedin: 'fa-linkedin-in', 
+                                            twitter: 'fa-twitter', 
+                                            facebook: 'fa-facebook-f'
+                                        }
+                                ul.card-socials
+                                    each social, key in socials
+                                        li
+                                            a(href=member.links[key]).icon-circle
+                                                i(class=social).fab

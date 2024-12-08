@@ -1,0 +1,35 @@
+.benefits{
+    padding: 70px 0;
+
+    @include device-lg{
+        padding: 35px 0;
+    }
+
+    &-item{
+        &-title{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            color: $gray-900;
+
+            img{
+                margin-right: 1.75rem;
+            }
+
+            h5{
+                text-transform: uppercase;
+                margin-bottom: 0;
+                font-size: 1rem;
+                font-weight: 400;
+            }
+        }
+
+        &-content{
+            font-weight: 300;
+            color: $gray-600;
+            line-height: 1.65;
+            text-align: justify;
+            font-size: .95rem;
+        }
+    }
+}

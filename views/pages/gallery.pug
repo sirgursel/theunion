@@ -1,0 +1,17 @@
+extends ./../layout
+
+include ./../partials/pagination
+
+block content
+    section.gallery
+        .container
+            .titlebox.mb-sm-5.mb-3
+                h1 Our Gallery
+            .row.mb-0.mb-sm-5
+                each image, i in images
+                    div(class=i % 3 == 0 ? 'col-md-12' : 'col-md-6')
+                        .img-wrapper
+                            a(href=image.src data-lightbox="gallery" data-title=image.alt)
+                                img(src=image.src, alt=image.alt)
+            if paginate
+                +pagination(Array(7), 3)

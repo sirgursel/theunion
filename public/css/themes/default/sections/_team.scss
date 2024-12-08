@@ -1,0 +1,45 @@
+.team{
+    padding: 70px 0;
+
+    @include device-lg{
+        padding: 35px 0 0;
+    }
+
+    .card{
+        border: none;
+        transition: .3s;
+
+        &-img-top{
+            border-radius: 50%;
+            width: 70%;
+            min-width: 100px;
+            margin: auto;
+        }
+
+        &-body{
+            text-align: center;
+        }
+
+        &-title{
+            text-transform: uppercase;
+            color: $gray-900;
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        &-subtitle{
+            color: $gray-900;
+            font-weight: 300;
+            font-size: .75rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (hover: hover){
+            &:hover{
+                background-color: white;
+                box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+                cursor: pointer;
+            }
+        }
+    }
+}

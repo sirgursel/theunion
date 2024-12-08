@@ -1,0 +1,130 @@
+.prices{
+    padding: 70px 0;
+
+    @include device-lg{
+        padding: 35px 0;
+    }
+    
+    @include device-sm{
+        padding: 20px 0;
+    }
+
+    &-content{
+        margin: auto;
+        width: 50%;
+        min-width: 625px;
+        text-align: center;
+        color: $gray-900;
+        margin-bottom: 4rem;
+        font-weight: 300;
+
+        @include device-sm{
+            width: 100%;
+            min-width: unset;
+            margin-bottom: 2rem;
+        }
+    }
+
+    &-item{
+        padding-top: 1rem;
+        border: 2px solid $blue-500;
+        text-align: center;
+
+        &--middle{
+            transform: scale(1.08);
+            border-color: $blue-700;
+
+            @media screen and (max-width: 991px){
+                transform: none;
+            }
+        }
+
+        p{
+            margin: 0;
+            color: $gray-800;
+            line-height: 1;
+        }
+
+        small{
+            color: $gray-800;
+        }
+
+        .titlebox{
+            height: 105px;
+        }
+    }
+
+    &-monthly{
+        margin-top: 1.5rem;
+        background-color: $gray-300;
+        padding: 1rem 0;
+
+        span{
+            font-size: 2.25rem;
+            color: $gray-900;
+            line-height: 1;
+            font-weight: 400;
+        }
+
+        small{
+            color: $gray-500;
+            font-size: .95rem;
+            font-weight: 300;
+        }
+    }
+
+    &-list{
+        list-style: none;
+        padding: 0;
+        text-align: left;
+        width: 80%;
+        margin: auto;
+
+        img{
+            margin-right: 1rem;
+        }
+
+        li{
+            font-weight: 300;
+            color: $gray-800;
+            font-size: 1rem;
+            padding: .5rem 0;
+            text-transform: capitalize;
+
+            &.prices-list-item--checked, &.prices-list-item--unchecked{
+                padding-left: 40px;
+
+                &:before{
+                    position: absolute;
+                    left: 40px;
+                    content: '';
+                    height: 15px;
+                    width: 25px;
+                    display: block;
+                    background-image: url('./../img/check-icon@2x.png');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: 100%;
+                    transform: translateY(3px);
+
+                    @at-root{
+                        .prices-item--middle &{
+                            left: 30px;
+                        }
+                    }
+                }
+            }
+
+            &.prices-list-item--unchecked:before{
+                background-image: url('./../img/cross-icon@2x.png');
+            }
+        }
+    }
+
+    .btn{
+        &:hover, &:focus{
+            background-color: #7ea5fe;
+            color: white;
+        }
+    }
+}

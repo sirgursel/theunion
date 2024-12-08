@@ -1,0 +1,36 @@
+.testimonials{
+    padding: 70px 0;
+    background-color: #f6f6f6;
+
+    @include device-lg{
+        padding: 35px 0;
+    }
+
+    @include device-xs{
+        padding: 25px 0;
+    }
+
+    &-item{
+        padding: 2rem 1.5rem;
+
+        @include device-xs{
+            padding: 1rem 0 0;
+        }
+
+        blockquote{
+            max-width: 600px;
+
+            p{
+                color: $gray-700;
+            }
+        }
+
+        p{
+            color: $gray-900;
+
+            small{
+                color: $gray-600;
+            }
+        }
+    }
+}

@@ -1,0 +1,35 @@
+.card{
+    &-noborder{
+        border: none;
+        outline: none;
+        box-shadow: none;
+    }
+
+    &-socials{
+        display: flex;
+        justify-content: space-between;
+        align-content: center;
+        list-style: none;
+        padding: 0;
+        width: 120px;
+        margin: auto;
+
+        & > li{
+            & > a{
+                width: 30px;
+                height: 30px;
+                background-color: #adadad;
+                border-radius: 50%;
+                display: block;
+                text-align: center;
+                line-height: 2;
+                color: white;
+                transition: .3s;
+
+                &:hover{
+                    background-color: darken(#adadad, 5%);
+                }
+            }
+        }
+    }
+}

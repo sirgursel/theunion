@@ -1,0 +1,66 @@
+.navbar{
+    background-color: black;
+    padding: 20px 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999999;
+
+    ul{
+        @include device-xs{
+            max-width: 150px;
+            margin: auto;
+            margin-bottom: 1rem;
+        }
+    }
+
+    &-brand{
+        img{
+            max-height: 50px;
+        }
+    }
+
+    &-toggler{
+        i{
+            color: white;
+        }
+    }
+
+    .nav{
+        &-item{
+            padding: 0 .5rem;
+            position: relative;
+        }
+
+        &-link{
+            color: white;
+
+            @media screen and (max-width: 991px){
+                text-align: center;
+            }
+
+            &.active, &:hover{
+                &:before, &:after{
+                    position: absolute;
+                    content: '';
+                    width: calc(100% - 22px);
+                    height: 5px;
+                    left: 0;
+                    transform: translateX(11px);
+                    border: 1px solid #d6d6d6;
+                }
+            
+                &:before{
+                    top: 4px;
+                    border-bottom: none;
+                }
+            
+                &:after{
+                    bottom: 4px;
+                    border-top: none;
+                }
+            }
+        }
+    }
+}

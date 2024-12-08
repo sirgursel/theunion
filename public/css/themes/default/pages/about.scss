@@ -1,0 +1,144 @@
+.about{
+    &-hero{
+        min-height: 500px;
+        height: 500px;
+        background-image: url('./../img/hero-about@2x.png');
+        background-size: 100% auto;
+        color: $gray-900;
+
+        @include device-lg{
+            min-height: unset;
+            max-height: 300px;
+        }
+
+        @include device-sm{
+            background-size: auto 100%;
+        }
+
+        @include device-xs{
+            max-height: 200px;
+        }
+    }
+
+    &-main{
+        padding: 40px 0;
+        text-align: center;
+
+        @include device-lg{
+            padding: 15px 0;
+        }
+
+        h1{
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+
+            @include device-sm{
+                font-size: 2rem;
+            }
+
+            @include device-xs{
+                font-size: 1.5rem;
+            }
+        }
+
+        h2{
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: $gray-600;
+            margin-bottom: .75rem;
+
+            @include device-sm{
+                font-size: 1.25rem;
+            }
+        }
+
+        h3{
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: black;
+
+            @include device-sm{
+                font-size: 1.1rem;
+            }
+        }
+
+        p{
+            width: 75%;
+            min-width: 600px;
+            margin: auto;
+            text-align: justify;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+
+            @include device-sm{
+                width: 100%;
+                min-width: unset;
+                padding: 0 .5rem;
+
+                &:last-child{
+                    padding-bottom: 0;
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        &-list{
+            display: flex;
+            justify-content: space-between;
+            background-color: white;
+            box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15);
+            list-style: none;
+            width: 90%;
+            margin: 0 auto 2rem;
+            padding: 3.5rem 2.5rem;
+
+            @include device-md{
+                flex-direction: column;
+                padding: 2rem 1rem;
+                width: 100%;
+                max-width: 280px;      
+            }
+
+            & li{
+                display: flex;
+                justify-content: space-between;
+
+                @include device-md{
+                    margin-bottom: 1rem;
+
+                    &:last-child{
+                        margin-bottom: 0;
+                    }
+                }
+
+                & > span{
+                    font-size: 3.2rem;
+                    font-weight: 300;
+                    color: black;
+                    margin-right: 1.25rem;
+                    line-height: 1.25;
+                }
+
+                & > div{
+                    text-align: left;
+
+                    & > span{
+                        &:first-child{
+                            font-size: 1.5rem;
+                            text-transform: uppercase;
+                            font-weight: 600;
+                            display: block;
+                        }
+
+                        &:last-child{
+                            display: block;
+                            font-size: 1.15rem;
+                            font-weight: 300;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

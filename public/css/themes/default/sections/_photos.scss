@@ -1,0 +1,28 @@
+.photos{
+    background-color: #8a8a8a;
+
+    .col{
+        height: 250px;
+        overflow: hidden;
+        padding: 0;
+        border: 3px solid white;
+        border-bottom: none;
+        border-top: none;
+    }
+
+    &-item{
+        &:first-child{
+            border-bottom: 3px solid white;
+        }
+    }
+
+    img{
+        max-width: 100%;
+
+        @media screen and (max-width: 991px){
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+        }
+    }
+}

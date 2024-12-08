@@ -1,0 +1,50 @@
+extends ./../layout
+
+include ./../partials/pagination
+
+block content
+    section.hero.events-hero
+        .overflow-white-bottom
+        .hero-content
+            h1 Upcoming events
+            h3 Explore our community &amp; member events
+    section.events-list
+        .container-fluid
+            .row
+                .col-md-6
+                    ul.events-list.pl-0.pl-md-5
+                        for event, i in events
+                            li
+                                a(href="#", class=i == 0 ? 'selected' : '', data-event-target=i, data-event-type="scroll").events-list-item
+                                    .titlebox.titlebox--small
+                                        h6 
+                                            span= moment(event.starttime).format("MMM")
+                                            br
+                                            =moment(event.starttime).format('Do YYYY')
+                                    div
+                                        h4.events-list-item-title= event.title
+                                        p= event.description
+                    if paginate
+                        +pagination(Array(7), 4)
+                each event, i in events
+                    div(class=i == 0 ? 'selected' : '', data-event=i).col-md-6.events-list-body
+                        .card.pb-3
+                            img(src=event.thumbnail, alt="").card-img-top
+                            .card-body
+                                .card-line
+                                    //- h2.card-title= event.title.toUpperCase()
+                                    h2.card-title= event.title
+                                .card-line
+                                    p.card-date
+                                        time(datetime=event.starttime).mr-4= moment(event.starttime).format("MMMM DD, YYYY")
+                                        span
+                                            time(datetime=event.starttime)= moment(event.starttime).format('h:mm a') 
+                                            | - 
+                                            time(datetime=event.endtime)= moment(event.endtime).format('h:mm a')
+                                .card-line
+                                    p.card-content= event.content
+                                .card-line
+                                    ul.card-list
+                                        each item in event.list
+                                            li=item.description
+                                a(href=event.rsvp).button.btn.btn-slg.btn-block.btn-lightblue RSVP FOR THIS EVENT

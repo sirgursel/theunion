@@ -1,0 +1,50 @@
+extends ./../layout
+
+block content
+    section.hero.members-hero
+        .overflow-black
+        .hero-content
+            .img-wrapper
+                img(src=members[currentMember || 0].background, alt="")
+            .container
+                .members-title
+                    img(src=members[currentMember || 0].photo alt="")
+                    .text-left.ml-5
+                        h1.mb-2=members[currentMember || 0].name
+                        h2.mb-0=members[currentMember || 0].description
+    section.members-about
+        .container
+            .row
+                .col-md-7
+                    h3 Biography
+                    each p in members[currentMember || 0].bio.split('\n')
+                        p=p
+                .col-md-5
+                    .card.card-noborder.mb-5
+                        h3.mb-3 Connect with Me
+                        -
+                            var socials = 
+                                {
+                                    linkedin: 'fa-linkedin-in', 
+                                    twitter: 'fa-twitter', 
+                                    facebook: 'fa-facebook-f'
+                                }
+                        ul.card-socials.ml-0
+                            each social, key in socials
+                                li
+                                    a(href=members[currentMember || 0].links[key]).bg-dark
+                                        i(class=social).fab
+                    .card.card-noborder
+                        h3.mb-3 Testimony
+                        p.members-about-testimony
+                            | "
+                            =members[currentMember || 0].testimony
+                            | "
+    section.members-list.team
+        .container
+            .titlebox.mb-4
+                h3 Other Team Members
+            .bxslider
+                -members.splice(currentMember, 1)
+                +teamSection(members)
+                

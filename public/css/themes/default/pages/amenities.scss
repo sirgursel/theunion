@@ -1,0 +1,175 @@
+.amenities{
+    &-hero{
+        min-height: 450px;
+        background-image: url('./../img/hero-amenities@2x.png');
+        background-size: auto 100%;
+
+        @include device-xs{
+            min-height: 300px;
+        }
+    }
+
+    &-main{
+        padding: 2rem 0;
+
+        .btn-slg{
+            @include device-xs{
+                padding: 1rem 2rem;
+            }
+        }
+
+        &-header{
+            margin-bottom: 0;
+            
+            ul{
+                padding: 0;
+                list-style: none;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: nowrap;
+                align-items: center;
+                text-align: center;
+
+                @include device-sm{
+                    overflow: scroll;
+                }
+
+                & li {
+                    width: 100px;
+                    min-width: 100px;
+
+                    a{
+                        color: $gray-700;
+                        text-decoration: none;
+
+                        @media (hover: hover){
+                            &:hover{
+                                text-decoration: underline;
+                            }
+                        }
+
+                        & .img-wrapper{
+                            width: 80px;
+                            height: 80px;
+                            border-radius: 50%;
+                            border: 2px solid $gray-600;
+                            line-height: 4.5;
+                            margin: 0 auto .75rem;
+            
+                            img{
+                                width: 35px;
+                                display: initial;
+                            }
+                        }
+        
+                        &.selected{
+                            .img-wrapper{
+                                border-color: black;
+                            }
+        
+                            color: black;
+                        }
+            
+                        h3{
+                            font-size: 1rem;
+                            color: $gray-700;
+                            font-weight: 300;
+                            text-transform: capitalize;
+                        }
+                    }
+                }
+            }
+        }
+
+        &-body{
+            display: none;
+            padding: 3rem;
+            background-color: #F5F5F5;
+
+            @include device-xs{
+                padding: 1rem;
+                text-align: center;
+            }
+
+            &.selected{
+                display: block;
+            }
+
+            h2{
+                text-transform: capitalize;
+                font-size: 2.5rem;
+                font-weight: 300;
+                color: black;
+                margin-bottom: 1.5rem;
+
+                @include device-xs{
+                    font-size: 1.75rem;
+                }
+            }
+
+            &-content{
+                color: $gray-800;
+                font-weight: 300;
+                font-size: .95rem;
+            }
+
+            ul{
+                list-style: none;
+                padding: 0;
+                margin-top: 2rem;
+
+                @include device-xs{
+                    margin-top: 1rem;
+                    text-align: left;
+                }
+
+                li{
+                    display: flex;
+                    justify-content: flex-start;
+                    align-content: center;
+                    padding: .75rem 0;
+
+                    img{
+                        height: 30px;
+                        width: auto;
+                        margin-right: 1.5rem;
+
+                        @include device-xs{
+                            margin-right: .75rem;
+                        }
+                    }
+
+                    h5{
+                        font-size: 1.1rem;
+                        font-weight: 300;
+                        color: $gray-800;
+                        margin-bottom: 0;
+                        line-height: 1.75;
+
+                        @include device-xs{
+                            font-size: 1rem;
+                        }
+                    }
+                }
+            }
+
+            .img-wrapper{
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                max-height: 400px;
+                overflow: hidden;
+                margin-bottom: 2rem;
+
+                @include device-xs{
+                    margin-bottom: 1rem;
+                }
+
+                img{
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        }
+    }
+}
