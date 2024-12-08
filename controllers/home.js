@@ -1,12 +1,15 @@
-const butter = require('buttercms')(process.env.BUTTER_TOKEN);
-const moment = require('moment');
-const _ = require('lodash');
+import ButterCMS from 'buttercms';
+
+// Initialize ButterCMS with your API token
+const butter = ButterCMS(process.env.BUTTER_TOKEN);
+import moment from 'moment';
+import _ from 'lodash';
 
 /**
  * GET /
  * Home page
  */
-exports.index = (req, res) => {
+export const index = (req, res) => {
     res.locals._ = _;
 
     //set page title
@@ -46,7 +49,7 @@ exports.index = (req, res) => {
  * GET /
  * About page
  */
-exports.about = (req, res) => {
+export const about = (req, res) => {
 
     // pass lodash
     res.locals._ = _;
@@ -70,7 +73,7 @@ exports.about = (req, res) => {
  * GET /
  * FAQ page
  */
-exports.faq = (req, res) => {
+export const faq = (req, res) => {
 
     //set page title
     res.locals.title = "FAQ";
@@ -90,8 +93,7 @@ exports.faq = (req, res) => {
  * GET /
  * Amenities page
  */
-exports.amenities = (req, res) => {
-
+export const amenities = (req, res) => {
     //set page title
     res.locals.title = 'Amenities';
 
@@ -121,8 +123,7 @@ exports.amenities = (req, res) => {
  * GET /
  * Gallery page
  */
-exports.gallery = (req, res) => {
-
+export const gallery = (req, res) => {
     //set pagination flag
     res.locals.paginate = false;
 
@@ -158,7 +159,7 @@ exports.gallery = (req, res) => {
  * GET /
  * Pricing page
  */
-exports.pricing = (req, res) => {
+export const pricing = (req, res) => {
 
     //set page title
     res.locals.title = 'Pricing';
@@ -180,8 +181,7 @@ exports.pricing = (req, res) => {
  * GET /
  * Pricing page
  */
-exports.events = (req, res) => {
-
+export const events = (req, res) => {
     // pass moment
     res.locals.moment = moment;
 
@@ -208,7 +208,8 @@ exports.events = (req, res) => {
  * GET /
  * Tithing  page
  */
-exports.tithe = (req, res) => {
+export const tithe = (req, res) => {
+
     res.locals.title = 'Pay Your Tech Tithes';
 
     res.render('pages/tithe');
@@ -218,7 +219,8 @@ exports.tithe = (req, res) => {
  * GET /
  * Privacy Policy page
  */
-exports.privacy = (req, res) => {
+export const privacy = (req, res) => {
+
     res.locals.title = 'Privacy Policies';
 
     res.render('pages/privacy');
@@ -228,8 +230,25 @@ exports.privacy = (req, res) => {
  * GET /
  * Terms of Service
  */
-exports.terms = (req, res) => {
+export const terms = (req, res) => {
+
     res.locals.title = 'Terms of Service';
 
     res.render('pages/terms');
 };
+
+// Group and export functions as default
+const homeController = {
+    index,
+    about,
+    faq,
+    amenities,
+    gallery,
+    pricing,
+    events,
+    tithe,
+    privacy,
+    terms
+    // Add other exported functions here...
+};
+export default homeController;  

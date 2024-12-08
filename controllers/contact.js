@@ -1,12 +1,12 @@
-const nodemailer = require('nodemailer');
-var Mailchimp = require('mailchimp-api-v3');
-var mailchimp = new Mailchimp(process.env.MAILCHIMP_KEY);
+import nodemailer from 'nodemailer';
+import Mailchimp from 'mailchimp-api-v3';
+const mailchimp = new Mailchimp(process.env.MAILCHIMP_KEY);
 
 /**
  * GET /contact
  * Contact form page.
  */
-exports.getContact = (req, res) => {
+export const getContact = (req, res) => {
   const unknownUser = !(req.user);
   res.locals.title = 'Contact Us';
   res.locals.unknownUser = unknownUser;
@@ -17,7 +17,7 @@ exports.getContact = (req, res) => {
  * POST /contact
  * Send a contact form via Nodemailer.
  */
-exports.postContact = (req, res) => {
+export const postContact = (req, res) => {
   let fromName;
   let fromEmail;
   if (!req.user) {
@@ -99,7 +99,7 @@ exports.postContact = (req, res) => {
  * POST /newsletter
  * Subcribe to the newsletter via the PACE mailchimp widget.
  */
-exports.newsletter = (req, res) => {
+export const newsletter = (req, res) => {
   console.log(JSON.stringify(req.body, null, 2));
   let email = req.body.email;
   req.assert('email', 'Email is not valid').isEmail();
@@ -141,3 +141,11 @@ exports.newsletter = (req, res) => {
     return res.redirect('/');
   })
 };
+
+// Group and export functions as default
+const contactController = {
+  getContact,
+  postContact,
+  newsletter
+};
+export default contactController;

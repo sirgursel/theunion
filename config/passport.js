@@ -1,17 +1,17 @@
-const passport = require('passport');
-const request = require('request');
-const { Strategy: InstagramStrategy } = require('passport-instagram');
-const { Strategy: LocalStrategy } = require('passport-local');
-const { Strategy: FacebookStrategy } = require('passport-facebook');
-const { Strategy: TwitterStrategy } = require('passport-twitter');
-const { Strategy: GitHubStrategy } = require('passport-github');
-const { OAuth2Strategy: GoogleStrategy } = require('passport-google-oauth');
-const { Strategy: LinkedInStrategy } = require('passport-linkedin-oauth2');
-const { Strategy: OpenIDStrategy } = require('passport-openid');
-const { OAuthStrategy } = require('passport-oauth');
-const { OAuth2Strategy } = require('passport-oauth');
+import passport from 'passport';
+import request from 'request';
+import { Strategy as InstagramStrategy } from 'passport-instagram';
+import { Strategy as LocalStrategy } from 'passport-local';
+import { Strategy as FacebookStrategy } from 'passport-facebook';
+import { Strategy as TwitterStrategy } from 'passport-twitter';
+import { Strategy as GitHubStrategy } from 'passport-github';
+import { OAuth2Strategy as GoogleStrategy } from 'passport-google-oauth';
+import { Strategy as LinkedInStrategy } from 'passport-linkedin-oauth2';
+import { Strategy as OpenIDStrategy } from 'passport-openid';
+import { OAuthStrategy } from 'passport-oauth';
+import { OAuth2Strategy } from 'passport-oauth';
 
-const User = require('../models/User');
+import User from '../models/User.js';
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -574,3 +574,10 @@ exports.isAuthorized = (req, res, next) => {
     res.redirect(`/auth/${provider}`);
   }
 };
+
+// Group and export functions as default
+const passportConfig = {
+  isAuthenticated,
+  isAuthorized
+};
+export default passportConfig;

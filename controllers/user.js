@@ -1,11 +1,10 @@
-const { promisify } = require('util');
-const crypto = require('crypto');
-const nodemailer = require('nodemailer');
-const passport = require('passport');
-const User = require('../models/User');
-const needle = require('needle');
-const toTitleCase = require('../utils/toTitleCase');
-
+import { promisify } from 'util';
+import crypto from 'crypto';
+import nodemailer from 'nodemailer';
+import passport from 'passport';
+import User from '../models/User.js';
+import needle from 'needle';
+import { toTitleCase } from '../utils/toTitleCase.js';
 const randomBytesAsync = promisify(crypto.randomBytes);
 
 
@@ -13,7 +12,7 @@ const randomBytesAsync = promisify(crypto.randomBytes);
  * GET /login
  * Login page.
  */
-exports.getLogin = (req, res) => {
+export const getLogin = (req, res) => {
   if (req.user) {
     res.locals.loggedIn = true;
     req.flash("info", {msg: "You are already signed in"});
@@ -29,7 +28,7 @@ exports.getLogin = (req, res) => {
  * POST /login
  * Sign in using email and password.
  */
-exports.postLogin = (req, res, next) => {
+export const postLogin = (req, res) => {
   req.assert('email', 'Email is not valid').isEmail();
   req.assert('password', 'Password cannot be blank').notEmpty();
   req.sanitize('email').normalizeEmail({ gmail_remove_dots: false });
@@ -80,7 +79,7 @@ exports.postLogin = (req, res, next) => {
  * GET /logout
  * Log out.
  */
-exports.logout = (req, res) => {
+export const logout = (req, res) => {
   req.logout();
   req.session.destroy((err) => {
     if (err) console.log('Error : Failed to destroy the session during logout.', err);
@@ -93,7 +92,7 @@ exports.logout = (req, res) => {
  * GET /signup
  * Signup page.
  */
-exports.getSignup = (req, res) => {
+export const getSignup = (req, res) => {
   if (req.user) {
     return res.redirect('/');
   }
@@ -106,7 +105,8 @@ exports.getSignup = (req, res) => {
  * POST /signup
  * Create a new local account.
  */
-exports.postSignup = (req, res, next) => {
+export const postSignup = (req, res) => {
+
   req.assert('email', 'Email is not valid').isEmail();
   req.assert('password', 'Password must be at least 4 characters long').len(4);
   req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
@@ -197,7 +197,8 @@ exports.postSignup = (req, res, next) => {
  * GET /account
  * Profile page.
  */
-exports.getAccount = (req, res) => {
+export const getAccount = (req, res) => {
+
   res.render('account/profile', {
     title: 'Account Management'
   });
@@ -207,7 +208,7 @@ exports.getAccount = (req, res) => {
  * POST /account/profile
  * Update profile information.
  */
-exports.postUpdateProfile = (req, res, next) => {
+export const postUpdateProfile = (req, res) => {
   req.assert('email', 'Please enter a valid email address.').isEmail();
   req.sanitize('email').normalizeEmail({ gmail_remove_dots: false });
 
@@ -243,7 +244,7 @@ exports.postUpdateProfile = (req, res, next) => {
  * POST /account/password
  * Update current password.
  */
-exports.postUpdatePassword = (req, res, next) => {
+export const postUpdatePassword = (req, res) => {
   req.assert('password', 'Password must be at least 4 characters long').len(4);
   req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
 
@@ -269,7 +270,7 @@ exports.postUpdatePassword = (req, res, next) => {
  * POST /account/delete
  * Delete user account.
  */
-exports.postDeleteAccount = (req, res, next) => {
+export const postDeleteAccount = (req, res) => {
   User.deleteOne({ _id: req.user.id }, (err) => {
     if (err) { return next(err); }
     req.logout();
@@ -282,7 +283,8 @@ exports.postDeleteAccount = (req, res, next) => {
  * GET /account/unlink/:provider
  * Unlink OAuth provider.
  */
-exports.getOauthUnlink = (req, res, next) => {
+export const getOauthUnlink = (req, res) => {
+
   const { provider } = req.params;
   User.findById(req.user.id, (err, user) => {
     if (err) { return next(err); }
@@ -317,7 +319,8 @@ exports.getOauthUnlink = (req, res, next) => {
  * GET /reset/:token
  * Reset Password page.
  */
-exports.getReset = (req, res, next) => {
+export const getReset = (req, res) => {
+
   if (req.isAuthenticated()) {
     return res.redirect('/');
   }
@@ -340,7 +343,8 @@ exports.getReset = (req, res, next) => {
  * POST /reset/:token
  * Process the reset password request.
  */
-exports.postReset = (req, res, next) => {
+export const postReset = (req, res) => {
+
   req.assert('password', 'Password must be at least 4 characters long.').len(4);
   req.assert('confirm', 'Passwords must match.').equals(req.body.password);
 
@@ -424,7 +428,7 @@ exports.postReset = (req, res, next) => {
  * GET /forgot
  * Forgot Password page.
  */
-exports.getForgot = (req, res) => {
+export const getForgot = (req, res) => {
   if (req.isAuthenticated()) {
     return res.redirect('/');
   }
@@ -437,7 +441,9 @@ exports.getForgot = (req, res) => {
  * POST /forgot
  * Create a random token, then the send user an email with a reset link.
  */
-exports.postForgot = (req, res, next) => {
+export const postForgot = (req, res) => {
+
+getForgot
   req.assert('email', 'Please enter a valid email address.').isEmail();
   req.sanitize('email').normalizeEmail({ gmail_remove_dots: false });
 
@@ -518,3 +524,22 @@ exports.postForgot = (req, res, next) => {
     .then(() => res.redirect('/forgot'))
     .catch(next);
 };
+
+// Group and export functions as default
+const userController = {
+  getLogin,
+  postLogin,
+  logout,
+  getSignup,
+  postSignup,
+  getAccount,
+  postUpdateProfile,
+  postUpdatePassword,
+  postDeleteAccount,
+  getOauthUnlink,
+  getReset,
+  postReset,
+  getForgot,
+  postForgot
+};
+export default userController;  
